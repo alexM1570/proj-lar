@@ -18,8 +18,7 @@
 
 <th>ID</th>
 <th>Категория</th>
-<th>Действия</th>
-<th>Информация</th>
+<th>Группа товара</th>
 <th>Действия</th>
 
 </tr>
@@ -31,7 +30,8 @@
 <tr>
     <td>{{$category->id}}</td>
     <td>{{$category->name}}</td>
-    <td>
+    <td>ДВИГАТЕЛЬ</td>
+     <td>
         <a href="#" class="btn btn-sm btn-secondary">Редактировать</a>
         <a href="#" class="btn btn-sm btn-danger">Удалить</a>
     </td>
