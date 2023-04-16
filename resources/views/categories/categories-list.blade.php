@@ -18,7 +18,6 @@
 
 <th>ID</th>
 <th>Категория</th>
-<th>Группа товара</th>
 <th>Действия</th>
 
 </tr>
@@ -30,10 +29,14 @@
 <tr>
     <td>{{$category->id}}</td>
     <td>{{$category->name}}</td>
-    <td>ДВИГАТЕЛЬ</td>
-     <td>
-        <a href="#" class="btn btn-sm btn-secondary">Редактировать</a>
-        <a href="#" class="btn btn-sm btn-danger">Удалить</a>
+     <td class="d-flex">
+        <a href="{{ route('categories.update', $category->id)}}" class="btn btn-sm btn-secondary mx-3">Редактировать</a>
+        <form action="{{ route('categories.delete', $category->id)}}" method="POST">
+@csrf @method("DELETE")
+        <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
+
+        </form>
+       
     </td>
 </tr>
 @endforeach

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
+            $table->float("price");
             $table->text("info");
             $table->string("image")->nullable();
             $table->foreignId("category_id")->references("id")->on("categories")->cascadeOnDelete();

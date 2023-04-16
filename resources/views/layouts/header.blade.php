@@ -17,6 +17,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{route('categories.droad')}}">Категории</a></li>
+            <li><a class="dropdown-item" href="{{route('card.index')}}">Список товара</a></li>
             </ul>
         </li>
         </ul>

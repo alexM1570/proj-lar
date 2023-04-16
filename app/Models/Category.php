@@ -11,4 +11,9 @@ class Category extends Model
 
 protected $fillable = ["name"];
 
+public function Cards()
+{
+    return $this->hasMany(Card::class);
+}
+
 }

@@ -36,4 +36,34 @@ return redirect("/");
 
     }
 
+    public function editCategory($categoryId)
+    {
+
+$category = Category::find($categoryId);
+
+return view('categories.edit-category', [
+    'category' => $category
+]);
+
+    }
+
+    public function updateCategory(Request $request, $categoryId)
+    {
+
+      $category = Category::find($categoryId);
+      $category ->update($request->all());
+      return redirect()->route("categories.droad");
+
+    }
+
+    public function deleteCategory($categoryId)
+    {
+
+        $category = Category::find($categoryId);
+        $category->delete();
+
+        return back();
+
+    }
+
 }
