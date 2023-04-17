@@ -9,11 +9,17 @@
 
 <a href="{{route('card.create')}}" class="btn btn-info">Добавить</a>
 
+@if (session('success'))
+
+<div class="alert alert-success">
+
+{{session('success')}}
+
+</div>
+
+@endif
+
 <div class="d-flex justify-content-between ilign-items-center my-5" >
-
-
-
-
 
 @if($Stores ->count())
 
@@ -35,7 +41,11 @@
 <tbody>
 
 <tr>
-    <td>#</td>
+    <td>
+
+    <img src="{{$store->getImage()}}" alt="" height="50px">
+
+    </td>
     <td>
               {{$store->price}}
         </td>
@@ -50,12 +60,12 @@
    </a>
 
 </td>
-    <td>{{$store->category->name}}</td> 
-    <td class="d-flex">
-        <a href="{{route('edit.create', $store)}}" class="btn btn-sm btn-secondary mx-3">Редактировать</a>
+    <td >{{$store->category->name}}</td> 
+    <td class="d-flex" style="height:70px">
+        <a  style="height:35px" href="{{route('edit.create', $store)}}" class="btn btn-sm btn-secondary mx-3 mt-2">Редактировать</a>
         <form action="{{route('delete.create', $store)}}" method="POST">
 @csrf @method("DELETE")
-        <button type="submit" class="btn btn-sm btn-danger" onclick="event.preventDefault();if(confirm('Запись будет удалена! Продолжить')){this.closest('form').submit();}">Удалить</button>
+        <button type="submit" class="btn btn-sm btn-danger mt-2" onclick="event.preventDefault();if(confirm('Запись будет удалена! Продолжить')){this.closest('form').submit();}">Удалить</button>
 
         </form>
        

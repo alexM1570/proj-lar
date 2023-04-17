@@ -41,7 +41,9 @@ class StoreController extends Controller
 
         ]);
 
-Store::add($request->all());
+   $store = Store::add($request->all());
+
+   $store->uploadImage($request->file("image"));
 
 return redirect()->route('card.index');
 
@@ -75,7 +77,8 @@ return redirect()->route('card.index');
            'info'=>$request->input('info'),
            'category_id'=>$request->input('category'),
         ]);
-        return redirect()->route("card.index");
+        $store->uploadImage($request->file("image"));
+        return redirect()->route("card.index")->with('success', 'Данные успешно обновлены!');
     }
 
     public function delete($storeId)
@@ -96,6 +99,13 @@ return redirect()->route('card.index');
           'store'=>Store::where("slug", $storeSlug)->first()
 
         ]);
+
+    }
+
+    public function removeImage($storeId)
+    {
+Store::find($storeId)->removeImage();
+return back();
 
     }
 }

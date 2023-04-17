@@ -57,9 +57,18 @@
 
 <label for="image" class="form-label">Изображение</label>
 <input type="file" name="image" id="image" class="form-control">
+@if($store->image)
+<div class="mt-4">
+
+<img src="{{$store->getImage()}}" alt="" width="150px">
 
 </div>
-<button class="btn btn-primary my-5">Сохранить</button>
+<a href="{{route('store.removeImage', $store->id)}}">Удалить</a>
+@endif
+
+
+</div>
+<button class="btn btn-primary my-3">Сохранить</button>
 </form>
 
 

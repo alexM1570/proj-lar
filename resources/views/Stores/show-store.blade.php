@@ -12,7 +12,7 @@
 
 
 <div class="card" style="width: 16rem;">
-  <img src="..." class="card-img-top" alt="...">
+  <img src="{{$store->getImage()}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title">{{$store->info}}</h3>
     <h5 class="card-title">Цена:{{$store->price}}</h5>

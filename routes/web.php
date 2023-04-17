@@ -1,5 +1,6 @@
 <?php
-
+use App\Models\Store;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StoreController;
@@ -22,8 +23,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, "ap_store"]);
 
-Route::prefix('categories')->group(function(){
 
+
+
+Route::middleware(['auth', ])->group(function(){
+
+    Route::middleware(['is_admin'])->group(function(){
+        Route::prefix('categories')->group(function(){
 //Категории
 Route::get('/', [CategoryController::class, 'categoriesList'])->name('categories.droad');
 Route::get('create', [CategoryController::class, 'createCategory'])->name('categories.create');
@@ -31,9 +37,6 @@ Route::post('create', [CategoryController::class, 'storeCategory'])->name('categ
 Route::get('{categoryId}/edit', [CategoryController::class, 'editCategory'])->name('categories.edit');
 Route::put('{categoryId}/edit', [CategoryController::class, 'updateCategory'])->name('categories.update');
 Route::delete('{categoryId}', [CategoryController::class, 'deleteCategory'])->name('categories.delete');
-
-
-});
 
 
 
@@ -47,9 +50,28 @@ Route::prefix('Stores')->group(function(){
     Route::put('{storeId}', [StoreController::class, 'update'])->name('update.create'); 
     Route::delete('{storeId}', [StoreController::class, 'delete'])->name('delete.create'); 
     Route::get('{storeSlug}/show', [StoreController::class, 'show'])->name('store.show'); 
+    Route::get('{storeId}/removeImage', [StoreController::class, 'removeImage'])->name('store.removeImage'); 
+});
+    });
     });
 
+    Route::post('logout', [AuthController::class,'logout'])->middleware('guest')->name("auth.logout");
+
+});
 
 
 
+
+
+Route::middleware(['guest'])->group(function(){
+
+Route::get('register', [AuthController::class,'registerPage'])->middleware('guest')->name("auth.register");
+Route::post('register', [AuthController::class,'storeUser'])->middleware('guest')->name("auth.storeUser");
+Route::get('login', [AuthController::class,'loginPage'])->middleware('guest')->name("auth.login");
+Route::post('login', [AuthController::class,'login'])->middleware('guest')->name("auth.loginUs");
+
+});
+
+
+Route::get('/', [MainController::class,'card'])->name("card");
 
