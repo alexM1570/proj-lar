@@ -5,9 +5,9 @@
 @section('content')
 
 
-<h2 class="my-5 ">Список товара</h2>
+<h2 class="my-5 ">{{__("Product List")}}</h2>
 
-<a href="{{route('card.create')}}" class="btn btn-info">Добавить</a>
+<a href="{{route('card.create')}}" class="btn btn-info">{{__("add")}}</a>
 
 @if (session('success'))
 
@@ -27,12 +27,12 @@
 <thead>
 <tr>
 
-<th>Изображение</th>
-<th>Цена</th>
-<th>Группа товара</th>
-<th>Название товара</th>
-<th>Катекория товара</th>
-<th>Редактировать/ Удалить</th>
+<th>{{__("image")}}</th>
+<th>{{__("price")}}</th>
+<th>{{__("product group")}}</th>
+<th>{{__("product name")}}</th>
+<th>{{__("product category")}}</th>
+<th>{{__("edit/delete")}}</th>
 
 </tr>
 
@@ -62,10 +62,10 @@
 </td>
     <td >{{$store->category->name}}</td> 
     <td class="d-flex" style="height:70px">
-        <a  style="height:35px" href="{{route('edit.create', $store)}}" class="btn btn-sm btn-secondary mx-3 mt-2">Редактировать</a>
+        <a  style="height:35px" href="{{route('edit.create', $store)}}" class="btn btn-sm btn-secondary mx-3 mt-2">{{__("edit")}}</a>
         <form action="{{route('delete.create', $store)}}" method="POST">
 @csrf @method("DELETE")
-        <button type="submit" class="btn btn-sm btn-danger mt-2" onclick="event.preventDefault();if(confirm('Запись будет удалена! Продолжить')){this.closest('form').submit();}">Удалить</button>
+        <button type="submit" class="btn btn-sm btn-danger mt-2" onclick="event.preventDefault();if(confirm('Запись будет удалена! Продолжить')){this.closest('form').submit();}">{{__("delete")}}</button>
 
         </form>
        
@@ -77,7 +77,7 @@
 </table>
 @else
 
-<p>Пока нет записей!</p>
+<p>{{__("there are no records yet")}}</p>
 
 @endif
 

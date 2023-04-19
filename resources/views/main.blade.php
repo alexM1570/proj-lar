@@ -5,7 +5,7 @@
 
 @section("content")
 
-<h1 class="my-5">Главная страница</h1>
+<h1 class="my-5">{{__("Home page")}}</h1>
 
 @foreach($stores as $store)
 <div class="float-start mx-2">

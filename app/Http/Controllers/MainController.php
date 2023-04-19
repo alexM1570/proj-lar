@@ -26,6 +26,14 @@ class MainController extends Controller
             return view('main', ['stores'=>$stores] );
     }
 
-  
+  public function changeLocale(Request $request, $lang)
+  {
+
+    $request->session()->put('lang',$request -> lang);
+   // echo $request->session()->get('lang');
+    return back();
+
+  }
+
 }
 

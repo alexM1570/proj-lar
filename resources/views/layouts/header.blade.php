@@ -9,18 +9,34 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{url('/')}}">Главная</a>
+          <a class="nav-link active" aria-current="page" href="{{url('/')}}">{{__('app.menu-home')}}</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Консоль администратора
+          {{__('app.menu-console')}}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{route('categories.droad')}}">Категории</a></li>
-            <li><a class="dropdown-item" href="{{route('card.index')}}">Список товара</a></li>
+            <li><a class="dropdown-item" href="{{route('categories.droad')}}">{{__('app.menu-categories')}}</a></li>
+            <li><a class="dropdown-item" href="{{route('card.index')}}">{{__('app.menu-list')}}</a></li>
             </ul>
         </li>
         </ul>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+       
+        <li class="nav-item dropdown">
+          <a class="nav-link  dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{__('app.menu-lang')}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{route('changeLang', 'en')}}">{{__('app.menu-english')}}</a></li>
+            <li><a class="dropdown-item" href="{{route('changeLang', 'ru')}}">{{__('app.menu-russian')}}</a></li>
+            <li><a class="dropdown-item" href="{{route('changeLang', 'ko')}}">{{__('app.menu-korean')}}</a></li>
+            </ul>
+        </li>
+        </ul>
+
+
        
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           @if(auth()->user())
@@ -34,17 +50,17 @@
 
 <form action="{{route('auth.logout')}}" method="POST">
   @csrf
-<button type="submit" class="btn btn-sm btn-danger">Выйти</button>
+<button type="submit" class="btn btn-sm btn-danger">{{__('app.menu-exit')}}</button>
 </form>
 
               </li>
 
 @else
 <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('auth.register')}}">Регистрация</a>
+          <a class="nav-link active" aria-current="page" href="{{route('auth.register')}}">{{__("Registration")}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('auth.login')}}">Вход</a>
+          <a class="nav-link active" aria-current="page" href="{{route('auth.login')}}">{{__("Entrance")}}</a>
         </li>
 
           @endif
