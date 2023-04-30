@@ -22,12 +22,7 @@
 
 @enderror
 </div>
-<div class="form-group my-4">
 
-<label for="group" class="form-label">Группа товара</label>
-<input type="text" name="group" id="group" class="form-control" value="{{old('group', $store->group)}}">
-
-</div>
 <div class="form-group my-4">
 
 <label for="info" class="form-label">Название товара</label>

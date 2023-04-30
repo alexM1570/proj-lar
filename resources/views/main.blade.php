@@ -14,7 +14,10 @@
   <div class="card-body">
     <h3 class="card-title">{{$store->info}}</h3>
     <h5 class="card-title">Цена:{{$store->price}}</h5>
-    <p class="card-text">Группа товара: {{$store->group}} <br> Категория: {{$store->category->name}}</p>
+    <p class="card-text"> Категория: {{$store->category->name}}</p>
+    @foreach($store->groups as $group)
+    <p class="card-text"> Группа товара:{{$group->name}} </p>
+    @endforeach
     <a href="#" class="btn btn-primary ">Добавить</a>
   </div>
 </div>

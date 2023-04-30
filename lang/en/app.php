@@ -11,4 +11,5 @@ return [
 'menu-english'=>'English',
 'menu-russian'=>'Russian',
 'menu-korean'=>'Korean',
+'menu-groups'=>'Product groups',
 ];

@@ -49,10 +49,14 @@
     <td>
               {{$store->price}}
         </td>
+        
     <td>
-  
-        {{$store->group}}
+    @foreach($store->groups as $group)
+    <p class="card-text"> {{$group->name}} </p>
+    @endforeach
+   
        </td>
+      
     <td>
         
     <a href="{{route('store.show', $store->slug)}}">

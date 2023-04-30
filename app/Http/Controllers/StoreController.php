@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Group;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,9 @@ class StoreController extends Controller
     {
         return view('Stores.stores-list', [
      
-            'Stores' =>Store::all()
-
+            'Stores' =>Store::all(),
+            'categories'=>Category::all()->sortBy("name"),
+            'groups'=>Group::all()->sortBy('name')            
         ]);
     }
 
@@ -24,7 +26,8 @@ class StoreController extends Controller
         return view('Stores.create-store', [
 
 
-            'categories'=>Category::all()->sortBy("name")
+            'categories'=>Category::all()->sortBy("name"),
+            'groups'=>Group::all()->sortBy('name')
 
         ]);
 
@@ -44,9 +47,12 @@ class StoreController extends Controller
    $store = Store::add($request->all());
 
    $store->uploadImage($request->file("image"));
+   $store->groups()->attach($request->input("groups"));
+   return redirect()->route('card.index');
 
-return redirect()->route('card.index');
-
+$groups = Group::create($request->all());
+$groups->srores()->attach($request->input('groups'));
+return back( );
 
     }
 

@@ -22,12 +22,7 @@
 
 @enderror
 </div>
-<div class="form-group my-4">
 
-<label for="group" class="form-label">Группа товара</label>
-<input type="text" name="group" id="group" class="form-control" value="{{old('group')}}">
-
-</div>
 <div class="form-group my-4">
 
 <label for="info" class="form-label">Название товара</label>
@@ -53,6 +48,34 @@
 
 @enderror
 </div>
+
+
+
+<div class="form-group my-4">
+
+<label for="groups" class="form-label">Группа товара</label>
+<select name="groups" id="groups" class="form-select">
+
+<option value="" selected disabled>Выберите категорию</option>
+
+@foreach($groups as $group)
+
+<option value="{{$group->id}}" id="{{'group_' .$group->id}}" name="groups[]" @if(old('category_' .$category->id)==$category->id) selected @endif >{{$group->name}}</option>
+
+@endforeach
+
+</select>
+@error('groups')
+<small class="text-danger">{{ $message }}</small>
+
+@enderror
+</div>
+
+
+
+
+
+
 <div class="form-group my-4">
 
 <label for="image" class="form-label">Изображение</label>

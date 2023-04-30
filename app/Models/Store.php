@@ -20,6 +20,10 @@ class Store extends Model
         'category_id'
          
     ];
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
 
     public function category()
     {
@@ -41,7 +45,6 @@ class Store extends Model
 $store = new static;
 $store->fill($input);
 $store->category_id=$input["category"];
-$store->group=$input["group"];
 $store->save();
 
 return $store;

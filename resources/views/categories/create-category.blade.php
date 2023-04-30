@@ -15,11 +15,14 @@
 <div class="form-group">
 
 <label for="name" class="form-label">Название Категории</label>
-<input type="text" name="name" class="form-control">
+<input type="text" name="name" id="name" class="form-control"  >
+
+
+<button type="submit" class="btn btn-primary my-5">Создать</button>
+</form>
 
 </div>
-<button class="btn btn-primary my-5">Создать</button>
-</form>
+
 
 
 

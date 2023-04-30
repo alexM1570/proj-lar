@@ -18,6 +18,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{route('categories.droad')}}">{{__('app.menu-categories')}}</a></li>
             <li><a class="dropdown-item" href="{{route('card.index')}}">{{__('app.menu-list')}}</a></li>
+            <li><a class="dropdown-item" href="{{route('groups.index')}}">{{__('app.menu-groups')}}</a></li>
             </ul>
         </li>
         </ul>

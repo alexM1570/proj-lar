@@ -11,4 +11,5 @@ return [
 'menu-english'=>'영어',
 'menu-russian'=>'러시아어',
 'menu-korean'=>'한국어',
+'menu-groups'=>'제품 그룹',
 ];

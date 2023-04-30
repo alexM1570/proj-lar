@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Group;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -22,7 +22,14 @@ class CategoryController extends Controller
     public function createCategory()
     {
 
-        return view('categories.create-category');
+        return view('categories.create-category', [
+
+            'categories'=>Category::all()->sortBy('name'),
+            'groups'=>Group::all()->sortBy('name') 
+        ]);
+
+
+        
 
     }
 
@@ -30,9 +37,10 @@ class CategoryController extends Controller
 
     {
 
-Category::create($request->all());
+$category = Category::create($request->all());
+return redirect()->route('categories.droad');
 
-return redirect("/");
+
 
     }
 

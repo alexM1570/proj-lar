@@ -2,6 +2,7 @@
 use App\Models\Store;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +79,8 @@ Route::middleware('locale')->group(function(){
     Route::get('/', [MainController::class,'card'])->name("card");
     
 
+
+    Route::resource('groups', GroupController::class);
 
 });
 

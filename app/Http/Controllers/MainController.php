@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Store;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -23,15 +24,18 @@ class MainController extends Controller
      
             $stores = Store::all();
 
-            return view('main', ['stores'=>$stores] );
+            return view('main', [
+              'stores'=>$stores,
+              'categories'=>Category::all()->sortBy('name'),
+              'groups'=>Group::all()->sortBy('name') 
+              ] );
     }
 
   public function changeLocale(Request $request, $lang)
   {
 
     $request->session()->put('lang',$request -> lang);
-   // echo $request->session()->get('lang');
-    return back();
+      return back();
 
   }
 
