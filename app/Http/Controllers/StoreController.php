@@ -54,6 +54,9 @@ $groups = Group::create($request->all());
 $groups->srores()->attach($request->input('groups'));
 return back( );
 
+
+
+
     }
 
     public function edit( $storeId)
@@ -61,12 +64,12 @@ return back( );
 
         return view('Stores.edit-store', [
 
-
+            'groups'=>Group::all()->sortBy('name'),  
             'categories'=>Category::all()->sortBy("name"),
             'store'=>Store::find($storeId)
         ]);
     }
-    public function update(Request $request, $storeId)
+    public function update(Request $request, Store $store,$storeId)
     {
         $request->validate([
 
@@ -81,16 +84,19 @@ return back( );
            'price'=>$request->input('price'),
            'group'=>$request->input('group'),
            'info'=>$request->input('info'),
-           'category_id'=>$request->input('category'),
+          
         ]);
         $store->uploadImage($request->file("image"));
+        
+
+        $store->update($request->all());
+        $store->groups()->attach($request->input('groups'));
         return redirect()->route("card.index")->with('success', 'Данные успешно обновлены!');
     }
 
     public function delete($storeId)
     {
-
-        Store::find($storeId)->delete();
+        Store::find($storeId)->remove();
         return back();
 
 

@@ -27,11 +27,11 @@
 <tbody>
 
 <tr>
-    <td>{{$group->id}}</td>
+    <td>{{$loop->index + 1}}</td>
     <td>{{$group->name}}</td>
      <td class="d-flex">
-        <a href="" class="btn btn-sm btn-secondary mx-3">{{__("edit")}}</a>
-        <form action="" method="POST">
+        <a href="{{route('groups.edit', $group)}}" class="btn btn-sm btn-secondary mx-3">{{__("edit")}}</a>
+        <form action="{{route('groups.destroy', $group->id)}}" method="POST">
 @csrf @method("DELETE")
         <button type="submit" class="btn btn-sm btn-danger">{{__("delete")}}</button>
 

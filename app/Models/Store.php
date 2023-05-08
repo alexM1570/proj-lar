@@ -90,4 +90,12 @@ if($this ->image){
 }
 
  }
+ public function remove()
+ {
+
+    $this->removeImage();
+    $this->delete();
+
+ }
+
 }

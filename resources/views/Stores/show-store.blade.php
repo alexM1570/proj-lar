@@ -10,8 +10,9 @@
 <h2 class="my-5 ">Карточки товара товара</h2>
 
 
-
-<div class="card" style="width: 16rem;">
+<div class="row">
+  <div class="col-lg-3 col-md-4 col-6">
+<div class="card">
   <img src="{{$store->getImage()}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title">{{$store->info}}</h3>
@@ -20,6 +21,7 @@
     <a href="#" class="btn btn-primary">Добавить</a>
   </div>
 </div>
-
+</div>
+</div>
 @endsection
 

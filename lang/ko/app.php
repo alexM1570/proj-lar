@@ -12,4 +12,7 @@ return [
 'menu-russian'=>'러시아어',
 'menu-korean'=>'한국어',
 'menu-groups'=>'제품 그룹',
+'menu-categories'=>'카테고리',
+'menu-users'=>'사용자',
+'menu-permissions'=>'권리',
 ];

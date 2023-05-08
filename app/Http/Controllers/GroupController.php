@@ -33,9 +33,7 @@ class GroupController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+  
     public function store(Request $request)
     {
         $request->validate([
@@ -49,36 +47,35 @@ class GroupController extends Controller
         $group->categories()->attach($request->input("categories"));
         return redirect()->route('groups.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show()
     {
-        //
+//
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+        public function edit(Group $group)
     {
-        //
+       return view('groups.edit',[
+        
+        'group'=>$group,
+        'categories'=>Category::all()->sortBy('name'),
+        
+       ]); 
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Group $group)
     {
-        //
+         
+$request->validate([
+       'name'=>'required',
+
+       ]);
+        $group->update($request->all());
+        $group->categories()->sync($request->input("categories"));
+        return redirect()->route('groups.index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+  
+    public function destroy(Group $group)
     {
-        //
+      $group->delete();
+      return back();
     }
 }

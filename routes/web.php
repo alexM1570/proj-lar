@@ -4,7 +4,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,15 +34,15 @@ Route::middleware('locale')->group(function(){
 
     Route::middleware(['auth', ])->group(function(){
     
-        Route::middleware(['is_admin'])->group(function(){
+        
             Route::prefix('categories')->group(function(){
     //Категории
-    Route::get('/', [CategoryController::class, 'categoriesList'])->name('categories.droad');
-    Route::get('create', [CategoryController::class, 'createCategory'])->name('categories.create');
+    Route::get('/', [CategoryController::class, 'categoriesList'])->middleware('permission:show-category')->name('categories.droad');
+    Route::get('create', [CategoryController::class, 'createCategory'])->middleware('permission:create-category')->name('categories.create');
     Route::post('create', [CategoryController::class, 'storeCategory'])->name('categories.store');
-    Route::get('{categoryId}/edit', [CategoryController::class, 'editCategory'])->name('categories.edit');
+    Route::get('{categoryId}/edit', [CategoryController::class, 'editCategory'])->middleware('permission:edit-category')->name('categories.edit');
     Route::put('{categoryId}/edit', [CategoryController::class, 'updateCategory'])->name('categories.update');
-    Route::delete('{categoryId}', [CategoryController::class, 'deleteCategory'])->name('categories.delete');
+    Route::delete('{categoryId}', [CategoryController::class, 'deleteCategory'])->middleware('permission:delete-category')->name('categories.delete');
     
     
     
@@ -47,18 +50,40 @@ Route::middleware('locale')->group(function(){
     
         //Список товара
         Route::get('/', [StoreController::class, 'index'])->name('card.index'); 
-        Route::get('create', [StoreController::class, 'create'])->name('card.create'); 
+        Route::get('create', [StoreController::class, 'create'])->middleware('permission:create-stores')->name('card.create'); 
         Route::post('create', [StoreController::class, 'store'])->name('store.create'); 
-        Route::get('{storeId}', [StoreController::class, 'edit'])->name('edit.create'); 
+        Route::get('{storeId}', [StoreController::class, 'edit'])->middleware('permission:edit-stores')->name('edit.create'); 
         Route::put('{storeId}', [StoreController::class, 'update'])->name('update.create'); 
-        Route::delete('{storeId}', [StoreController::class, 'delete'])->name('delete.create'); 
-        Route::get('{storeSlug}/show', [StoreController::class, 'show'])->name('store.show'); 
+        Route::delete('{storeId}', [StoreController::class, 'delete'])->middleware('permission:delete-stores')->name('delete.create'); 
+        Route::get('{storeSlug}/show', [StoreController::class, 'show'])->middleware('permission:show-stores')->name('store.show'); 
         Route::get('{storeId}/removeImage', [StoreController::class, 'removeImage'])->name('store.removeImage'); 
     });
+
+    Route::prefix('users')->group(function(){
+        Route::get('/', [UserController::class, 'index'])->middleware('permission:show-users')->name('users.index'); 
+        Route::get('{user}/edit', [UserController::class, 'edit'])->middleware('permission:edit-users')->name('users.edit'); 
+        Route::put('{user}/edit', [UserController::class, 'update'])->middleware('permission:create-users')->name('users.update'); 
+    });
+
+    Route::prefix('roles')->group(function(){
+        Route::get('/', [RoleController::class, 'index'])->middleware('permission:show-roles')->name('roles.index'); 
+        Route::get('create', [RoleController::class, 'create'])->middleware('permission:create-roles')->name('roles.create');
+        Route::post('create', [RoleController::class, 'store'])->name('roles.store');
+        Route::get('{role}/edit', [RoleController::class, 'edit'])->middleware('permission:edit-roles')->name('roles.edit');
+        Route::put('{role}/edit', [RoleController::class, 'update'])->name('roles.update');
+    });
+
+    Route::prefix('permissions')->group(function(){
+        Route::get('/', [PermissionController::class, 'index'])->name('permissions.index'); 
+        Route::get('create', [PermissionController::class, 'create'])->name('permissions.create');
+        Route::post('create', [PermissionController::class, 'store'])->name('permissions.store');
+        
+    });
+
         });
-        });
+       
     
-        Route::post('logout', [AuthController::class,'logout'])->middleware('guest')->name("auth.logout");
+        Route::post('logout', [AuthController::class,'logout'])->name("auth.logout");
     
     });
     
@@ -68,10 +93,10 @@ Route::middleware('locale')->group(function(){
     
     Route::middleware(['guest'])->group(function(){
     
-    Route::get('register', [AuthController::class,'registerPage'])->middleware('guest')->name("auth.register");
-    Route::post('register', [AuthController::class,'storeUser'])->middleware('guest')->name("auth.storeUser");
-    Route::get('login', [AuthController::class,'loginPage'])->middleware('guest')->name("auth.login");
-    Route::post('login', [AuthController::class,'login'])->middleware('guest')->name("auth.loginUs");
+    Route::get('register', [AuthController::class,'registerPage'])->name("auth.register");
+    Route::post('register', [AuthController::class,'storeUser'])->name("auth.storeUser");
+    Route::get('login', [AuthController::class,'loginPage'])->name("auth.login");
+    Route::post('login', [AuthController::class,'login'])->name("auth.loginUs");
     
     });
     
@@ -79,8 +104,10 @@ Route::middleware('locale')->group(function(){
     Route::get('/', [MainController::class,'card'])->name("card");
     
 
-
     Route::resource('groups', GroupController::class);
+ 
+    
+  
 
 });
 

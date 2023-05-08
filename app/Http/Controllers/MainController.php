@@ -22,7 +22,7 @@ class MainController extends Controller
     {
         
      
-            $stores = Store::all();
+            $stores = Store::paginate(8);
 
             return view('main', [
               'stores'=>$stores,

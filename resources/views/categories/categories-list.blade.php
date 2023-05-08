@@ -27,7 +27,7 @@
 <tbody>
 
 <tr>
-    <td>{{$category->id}}</td>
+    <td>{{$loop->index + 1}}</td>
     <td>{{$category->name}}</td>
      <td class="d-flex">
         <a href="{{ route('categories.update', $category->id)}}" class="btn btn-sm btn-secondary mx-3">{{__("edit")}}</a>

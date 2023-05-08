@@ -12,4 +12,8 @@ return [
 'menu-russian'=>'Russian',
 'menu-korean'=>'Korean',
 'menu-groups'=>'Product groups',
+'menu-categories'=>'Categories',
+'menu-users'=>'Users',
+'menu-roles'=>'Roles',
+'menu-permissions'=>'Permissions',
 ];

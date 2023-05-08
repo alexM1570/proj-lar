@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -57,15 +58,15 @@ public function login(Request $request)
    ])->onlyInput('name');
 }
 
-public function logout(Request $request)
+public function logout(Request $request): RedirectResponse
 {
-Auth::logout();
-
-$request->session()->invalidate();
-$request->session()->regenerateToken();
-
-return redirect('/');
-
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect('/');
 }
 
 }
