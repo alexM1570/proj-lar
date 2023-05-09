@@ -21,5 +21,11 @@ class Main extends Model
        }
      return asset("assets/images/no-image.jpg");
     }
+    public function getPrice()
+    {
+   
+        return number_format($this->price, 2, '.', ' '). ' ₽';
+   
+    }
 
 }

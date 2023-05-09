@@ -39,5 +39,12 @@ class MainController extends Controller
 
   }
 
+  public function showStore($storeSlug)
+  {
+      return view('store-page',[
+         'store' => Store::where('slug', $storeSlug)->first() 
+      ]);
+  }
+
 }
 

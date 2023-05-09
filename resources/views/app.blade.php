@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APS - @yield("title")</title>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
+    <style>
+      .sticky-message{
+        position: fixed;
+        top: 100px;
+        right: 50px;
+        border-radius: 20px;
+      }
+    </style>
 </head>
 <body>
   @include("layouts.header")
@@ -19,8 +27,11 @@
 
   </main>
 
+<div class="sticky-message"></div>
 
-  <script src="{{asset('assets/js/jquery-3.6.4.js')}}"></script>
+<script src="{{asset('assets/js/jquery-3.6.4.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.bundle.js')}}"></script>
+<script src="{{asset('assets/js/script.js')}}"></script>
+
 </body>
 </html>

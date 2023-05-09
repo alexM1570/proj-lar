@@ -1,6 +1,7 @@
 <?php
 use App\Models\Store;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MainController;
@@ -29,8 +30,12 @@ Route::middleware('locale')->group(function(){
 
     Route::get('/', [MainController::class, "ap_store"]);
      Route::get('lang/{lang}', [MainController::class, 'changeLocale'])->name('changeLang');
+     Route::get('stores/{storeSlug}', [MainController::class, 'showStore'])->name('store_show'); 
+     Route::get('add-to-cart/{store}', [CartController::class, 'addToCart'])->name('cart.add-store'); 
+     Route::get('cart', [CartController::class, 'cartPage'])->name('cart'); 
+     Route::put('cart/items/{item}/edit', [CartController::class, 'changeQty'])->name('cart.items.qty'); 
 
-
+     Route::delete('cart/items/{item}', [CartController::class, 'destroy'])->name('cart.items.destroy'); 
 
     Route::middleware(['auth', ])->group(function(){
     
@@ -54,8 +59,8 @@ Route::middleware('locale')->group(function(){
         Route::post('create', [StoreController::class, 'store'])->name('store.create'); 
         Route::get('{storeId}', [StoreController::class, 'edit'])->middleware('permission:edit-stores')->name('edit.create'); 
         Route::put('{storeId}', [StoreController::class, 'update'])->name('update.create'); 
+        Route::get('stores/{storeSlug}', [StoreController::class, 'show'])->name('store.show'); 
         Route::delete('{storeId}', [StoreController::class, 'delete'])->middleware('permission:delete-stores')->name('delete.create'); 
-        Route::get('{storeSlug}/show', [StoreController::class, 'show'])->middleware('permission:show-stores')->name('store.show'); 
         Route::get('{storeId}/removeImage', [StoreController::class, 'removeImage'])->name('store.removeImage'); 
     });
 

@@ -111,6 +111,11 @@ return back( );
           'store'=>Store::where("slug", $storeSlug)->first()
 
         ]);
+       
+       
+           
+       
+        
 
     }
 

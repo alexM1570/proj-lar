@@ -58,7 +58,7 @@
 
               {{ $category->name }}
 
-              </a>
+              </a> 
             
             
             </li>
@@ -67,6 +67,15 @@
         </li>
         </ul>
 
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          @if($currentUser->cart)
+          <a class="nav-link  mx-2 header-cart" aria-current="page" href="{{ route('cart')}}">Корзина( {{ $currentUser->cart->items->count() }} )</a>
+          @else
+          <span class="header-cart">Корзина</span>
+          @endif
+        </li>
+        </ul>
        
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           @if(auth()->user())
@@ -83,7 +92,7 @@
 <button type="submit" class="btn btn-sm btn-danger">{{__('app.menu-exit')}}</button>
 </form>
 
-              </li>
+ </li>
 
 @else
 <li class="nav-item">

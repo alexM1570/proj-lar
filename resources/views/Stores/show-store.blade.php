@@ -16,7 +16,7 @@
   <img src="{{$store->getImage()}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h3 class="card-title">{{$store->info}}</h3>
-    <h5 class="card-title">Цена:{{$store->price}}</h5>
+    <h5 class="card-title">Цена: {{$store->getPrice()}}</h5>
     <p class="card-text">Группа товара: {{$store->group}} <br> Категория: {{$store->category->name}}</p>
     <a href="#" class="btn btn-primary">Добавить</a>
   </div>

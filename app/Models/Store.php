@@ -98,4 +98,21 @@ if($this ->image){
 
  }
 
+ public function getPrice()
+ {
+
+     return number_format($this->price, 2, '.', ' '). ' ₽';
+
+ }
+ 
+ public function getGroup()
+ {
+    $group = [];
+    foreach($this->groups as $g){
+    $group[] ='<a href="#">'. $g->name .'</a>';
+    }
+    return implode(', ', $group);
+ }
+
+
 }

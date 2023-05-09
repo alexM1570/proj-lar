@@ -58,7 +58,7 @@
 
 @foreach($groups as $group)
 
-<option value="{{$group->id}}" id="{{'group_' .$group->id}}" name="groups[]" @if(old('category_' .$category->id)==$category->id) selected @endif >{{$group->name}}</option>
+<option value="{{$group->id}}" @if($group->id == old('group')) selected @endif >{{$group->name}}</option>
 
 @endforeach
 

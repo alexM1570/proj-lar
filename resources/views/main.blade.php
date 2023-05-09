@@ -16,12 +16,13 @@
   <img src="{{$store->getImage()}}" class="card-img-top" alt="..." height="220px">
   <div class="card-body">
     <h3 class="card-title">{{$store->info}}</h3>
-    <h5 class="card-title">Цена:{{$store->price}}</h5>
+    <h5 class="card-title">Цена: {{$store->getPrice()}}</h5>
     <p class="card-text"> Категория: {{$store->category->name}}</p>
     @foreach($store->groups as $group)
     <p class="card-text"> Группа товара:{{$group->name}} </p>
     @endforeach
-    <a href="#" class="btn btn-primary ">Добавить</a>
+    <a href="{{route('store_show', $store->slug)}}" class="btn btn-sm btn-primary ">Перейти</a>
+    <a href="{{ route('cart.add-store', $store) }}" type="button" class="add-to-cart btn btn-sm btn-success"> Добавить в корзину</a>
   </div>
 </div>
 </div>

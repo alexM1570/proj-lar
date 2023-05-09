@@ -23,8 +23,12 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.header', function($view){
 
             $view->with([
-             'categories'=>Category::all()->sortBy('name')
+             'categories'=>Category::all()->sortBy('name'),
+             'currentUser' => auth()->user()
             ]);
+
+            
         });
     }
+
 }
