@@ -23,4 +23,24 @@ class Cart extends Model
     {
         return $this->hasMany(CartItem::class);
     }
+
+    public function getTotalPrice()
+    {
+        $price = 0;
+       $items = $this->items;
+
+       foreach($items as $item){
+        $price += ($item->price * $item->quantity);
+       }
+       return $price;
+    }
+
+    public function getTotalPriceCart()
+    {
+      
+       return number_format($this->getTotalPrice(), 0 , ',', ' ' ). " ₽ ";
+    }
+
+   
+   
 }
