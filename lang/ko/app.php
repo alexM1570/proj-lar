@@ -15,5 +15,6 @@ return [
 'menu-categories'=>'카테고리',
 'menu-users'=>'사용자',
 'menu-permissions'=>'권리',
-'menu-orders' => '명령'
+'menu-orders' => '명령',
+'menu-user orders' =>'사용자 주문'
 ];

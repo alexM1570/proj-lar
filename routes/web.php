@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Models\Store;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
@@ -97,6 +98,12 @@ Route::middleware('locale')->group(function () {
 
 
         Route::post('logout', [AuthController::class, 'logout'])->name("auth.logout");
+
+        Route::prefix('admin')->group(function(){
+        Route::resource('orders', AdminOrderController::class );
+
+        Route::get('change-order-status/{order}', [AdminOrderController::class, 'changeStatus'])->name('order.change-status');
+        });
     });
 
 

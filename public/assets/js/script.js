@@ -26,7 +26,3 @@ $(".change-qty").on('change', function(){
 $(this).closest('form').submit();
 });
 
-
-$("#phone").maskinput({mask:"(999) 999-9999"});
-    
-   

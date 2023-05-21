@@ -16,5 +16,6 @@ return [
 'menu-users'=>'Пользователи',
 'menu-roles'=>'Роли',
 'menu-permissions'=>'Права',
-'menu-orders' => 'Заказы'
+'menu-orders' => 'Заказы',
+'menu-user orders' =>'Заказы пользователей'
 ];

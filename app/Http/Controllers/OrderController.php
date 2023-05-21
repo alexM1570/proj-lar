@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderSuccess;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Throwable;
 
 class OrderController extends Controller
@@ -23,9 +25,6 @@ class OrderController extends Controller
 
         ]);
 
-        try{
-
-             
         $cart = auth()->user()->cart;
 
         $order = Order::add($request->all());
@@ -37,6 +36,14 @@ class OrderController extends Controller
         $order->total_sum = $cart ->getTotalPrice();
         $order->save();
          $cart->delete();
+
+
+       //Mail::to([$order->email, 'alexej.makhonin@yandex.ru'])->send(new OrderSuccess($order));   
+
+        try{
+
+          
+      
 
         }catch(Throwable $e){
             report($e);

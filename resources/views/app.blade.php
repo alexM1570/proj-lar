@@ -43,10 +43,30 @@
 
   <div class="sticky-message"></div>
 
-  <script src="{{asset('assets/js/jquery-3.6.4.js')}}"></script>
+  <script src="{{asset('assets/js/jquery-3.6.4.min.js')}}"></script>
+  <script src="{{asset('assets/js/script.js')}}"></script>
   <script src="{{asset('assets/js/bootstrap.bundle.js')}}"></script>
   @yield('page-scripts')
-    <script src="{{asset('assets/js/script.js')}}"></script>
+
+  <script>
+
+    
+let $phone = $('#phone');
+if($phone.length > 0){
+    $("#phone").inputmask({mask:"+ 7 (999) 999-9999"});
+}
+
+    
+  $('.change-status').on('change', function(){
+let select = $(this);
+      $.ajax({
+       url:select.closest('form').attr('action') + '?status=' + select.val(),
+       method:'GET',
+
+    });
+  }); 
+
+  </script>
 
 </body>
 

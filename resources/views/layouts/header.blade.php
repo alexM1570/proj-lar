@@ -25,7 +25,7 @@
               <li><a class="dropdown-item" href="{{route('categories.droad')}}">{{__('app.menu-categories')}}</a></li>
               <li><a class="dropdown-item" href="{{route('card.index')}}">{{__('app.menu-list')}}</a></li>
               <li><a class="dropdown-item" href="{{route('groups.index')}}">{{__('app.menu-groups')}}</a></li>
-              <li><a class="dropdown-item" href="{{route('admin.orders')}}">{{__('app.menu-orders')}}</a></li>
+              <li><a class="dropdown-item" href="{{route('orders.index')}}">{{__('app.menu-user orders')}}</a></li>
 
 
             </ul>
@@ -77,6 +77,10 @@
             @endif
             @endif
           </li>
+          
+        </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li><a class="dropdown-item" href="{{route('admin.orders')}}">{{__('app.menu-orders')}}</a></li>
         </ul>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">

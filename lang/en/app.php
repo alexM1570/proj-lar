@@ -16,5 +16,7 @@ return [
 'menu-users'=>'Users',
 'menu-roles'=>'Roles',
 'menu-permissions'=>'Permissions',
-'menu-orders' => 'Orders'
+'menu-orders' => 'Orders',
+'menu-user orders' =>'User orders'
+
 ];

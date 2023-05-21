@@ -7,8 +7,8 @@
 
 <h1 class="my-5">{{__("Корзина товаров")}}</h1>
 
-
 @if($cart)
+
 <div class="row">
 
   <div class="col-lg-8 col-12">
@@ -58,15 +58,15 @@
 
       <h4 class="mb-2">Сумма заказа</h4>
       <h5 class="mb-2">{{ priceFormat($cart->getTotalPrice()) }}</h5>
-
-      <a href="{{ route('checkout.app') }}" class="btn btn-primary">Оформить заказ</a>
+    <form action="{{ route('checkout.app') }}" >
+      <button  class="btn btn-primary"  >Оформить заказ</button>
+      </form>
 
     </div>
 
 
   </div>
 </div>
-
 @else
 
 <div>
