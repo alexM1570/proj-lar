@@ -10,6 +10,7 @@
        <td> {{ priceFormat($item->price) }} </td>
        <td> {{ $item->store->quantity }} </td>
        <td> {{ priceFormat($item->sub_total) }} </td>
+       
        </tr>
     @endforeach
 </table>

@@ -32,8 +32,7 @@
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group me-2" role="group" aria-label="First group">
     @if($stores->currentPage() != 1)
-    <a href="{{ $stores->previousPageUrl() }}" type="button" class="btn btn-primary">
-      << /a>
+    <a href="{{ $stores->previousPageUrl() }}" type="button" class="btn btn-primary"><</a>
         @endif
         @for($i=1;$i<=$stores->lastPage();$i++)
           <a href="{{ $stores->url($i) }}" type="button" class="btn @if($i==$stores->currentPage()) btn-primary @else btn-outline-primary @endif">{{$i}}</a>

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class Store extends Model
 {
@@ -54,14 +56,33 @@ return $store;
 
     if($file == null) return false;
     //$ext = $file->extension();
-    $filename = $file->getClientOriginalName();
+    $originalFilename = 'image_' . $this->id . '.' . $file->extension();
+    $middleFilename = 'image_' . $this->id . '_middle.' . $file->extension();
+    $smallFilename = 'image_' . $this->id . '_small.' . $file->extension();
     $path = 'Stores/store_' .$this->id . '/';
+ 
+
+    if(!File::exists('uploads/' .$path)){
+        File::makeDirectory('uploads/' . $path);
+    }
+
+    $compressImageFull = Image::make($file);
+    $compressImageFull->save('uploads/' . $path . '/' . $originalFilename, 100);
+
+        $compressImageMiddle = Image::make($file); 
+        $compressImageMiddle->resize(600, null, function ($constraint) {
+        $constraint->aspectRatio();
+        })->save('uploads/' . $path . '/' . $middleFilename, 100);
+
+      
+    $compressImageSmall = Image::make($file);
+    $compressImageSmall->resize(300, null, function ($constraint) {
+    $constraint->aspectRatio();
+    })->save('uploads/' . $path . '/' . $smallFilename, 100);
 
     $this->removeImage();
-     
-    $file->storeAs($path, $filename, 'uploads');
-
-    $this-> image = $path . $filename;
+    $file->storeAs($path, $originalFilename, 'uploads');
+    $this-> image = $path . $originalFilename;
     $this->save();
 
  }
