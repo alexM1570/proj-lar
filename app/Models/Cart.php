@@ -24,15 +24,20 @@ class Cart extends Model
         return $this->hasMany(CartItem::class);
     }
 
+    public function promocodes()
+    {
+        return $this -> belongsToMany(Promocode::class);
+    }
+
     public function getTotalPrice()
     {
-        $price = 0;
-       $items = $this->items;
+    //     $price = 0;
+    //    $items = $this->items;
 
-       foreach($items as $item){
-        $price += ($item->price * $item->quantity);
-       }
-       return $price;
+    //    foreach($items as $item){
+    //     $price += ($item->price * $item->quantity);
+    //    }
+       return $this->total;
     }
 
     public function getTotalPriceCart()

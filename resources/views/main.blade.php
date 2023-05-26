@@ -7,7 +7,13 @@
 
 <h1 class="my-5">{{__("Home page")}}</h1>
 
-
+<form action="" method="GET">
+  <div class="form-group mb-3">
+  <input type="text" name="search" placeholder="Введиде запрос" class="form-control mb-3">
+  <button class="btn btn-sm btn-success">Найти</button>
+  </div>
+ 
+</form>
 
 <div class="row">
   @foreach($stores as $store)

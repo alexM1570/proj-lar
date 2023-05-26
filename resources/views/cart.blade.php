@@ -7,6 +7,8 @@
 
 <h1 class="my-5">{{__("Корзина товаров")}}</h1>
 
+
+
 @if($cart)
 
 <div class="row">
@@ -48,13 +50,37 @@
 
     @endforeach
 
-
   </div>
 
-  <div class="order col-lg-4 col-12 ">
+  <div class=" col-lg-4 col-12 ">
+@if($cart->promocodes->first())
+@if($cart->promocodes->contains($cart->promocodes->first()->id))
+<p class="text-danger">
+  @if(\Session::has('message'))
+<div class="alert alert-info">
+  <ul>
+    <li>
+      {!! \Session::get('message') !!}
+    </li>
+  </ul>
+</div>
+@endif 
+<a href="{{ route('app.cancel-promocode') }}">Отменить</a>
+ </p>
 
-    <div class="text-center mt-5">
-      <h3 class="mb-4 text-primary">Ваш заказ!</h3>
+@endif
+@else
+<form action="{{ route('app.cart-promocode') }}" method="POST" class="d-flex newRight">
+@csrf
+<div class="form-group mb-3">
+  <label for="">Введите промокод</label>
+  <input type="text" class="form-control inputWiu" name="promocode">
+</div>
+<button class="btn btnMini btn-sm btn-success mb-3">Применить</button>
+</form>
+@endif
+    <div class="text-center order mt-5">
+      <h3 class="mb-4 mt-5 text-primary">Ваш заказ!</h3>
 
       <h4 class="mb-2">Сумма заказа</h4>
       <h5 class="mb-2">{{ priceFormat($cart->getTotalPrice()) }}</h5>

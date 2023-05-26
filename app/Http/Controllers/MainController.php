@@ -8,12 +8,19 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function ap_store()
+    public function ap_store(Request $request)
     {
+      $stores = Store::all();
+       
+
+       if(isset($_GET['search'])){
+        $stores = Store::where("info", 'like', "%".$_GET['search']."%")->GET();
+        }
+
     
-       // dd(auth()->user());
-    
-       return view("main");
+       return view("main",[
+        'stores' => $stores,
+       ]);
        
     }
    
@@ -23,6 +30,8 @@ class MainController extends Controller
         
      
             $stores = Store::paginate(8);
+
+       
 
             return view('main', [
               'stores'=>$stores,

@@ -14,7 +14,11 @@
       right: 50px;
       border-radius: 20px;
     }
-
+.newRight{
+  position: fixed;
+    top: 180px;
+    right: 250px;
+}
     .order{
     position: fixed;
     top: 280px;
@@ -25,6 +29,14 @@
     margin-right: 100px;
     border-radius: 20px;
 
+}
+.btnMini{
+  margin-left: 15px;
+  margin-top: 25px;
+  height: 35px;
+}
+.inputWiu{
+    width: 300px;
 }
   </style>
 </head>

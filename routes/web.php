@@ -40,6 +40,8 @@ Route::middleware('locale')->group(function () {
 
     Route::delete('cart/items/{item}', [CartController::class, 'destroy'])->name('cart.items.destroy');
 
+    Route::post('cart/set-promocode', [CartController::class, 'applyPromocode'])->name('app.cart-promocode');
+    Route::get('cart/unset-promocode', [CartController::class, 'cancelPromocode'])->name('app.cancel-promocode');
     Route::middleware(['auth',])->group(function () {
 
 
